@@ -1,0 +1,14 @@
+<form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+
+<!--paikka = models.CharField(max_length = 30)
+	saaja = models.CharField(max_length = 300)
+	viehe = models.CharField(max_length = 300)
+	paino = models.CharField(max_length = 10)
+	pituus = models.CharField(max_length = 10 )
+	saantipäivä -->
+    
