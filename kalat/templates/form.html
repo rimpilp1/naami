@@ -1,4 +1,4 @@
-<form action="/kalat/" method="POST">
+<form action="/kalat/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />

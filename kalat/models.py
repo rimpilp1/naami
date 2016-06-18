@@ -12,7 +12,7 @@ class kalat(models.Model):
 	pituus = models.CharField(max_length = 10 )
 	#saantipäivä = models.DateTimeField('date published')
 	kuva = models.ImageField(upload_to="images", default = "images/default.jpg")
-	public = models.BooleanField
+	public = models.BooleanField()
 	def __str__(self): 
 		return "Saaja: " + self.saaja+ " Paikka: " + self.paikka + " Viehe: " + self.viehe + " Paino:" + self.paino + " Pituus: " + self.pituus
 # Create your models here.
