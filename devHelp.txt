@@ -1,0 +1,22 @@
+Account: Admin Password: naamisuvanto   
+
+$django-admin startproject naami
+$pip install pillow
+
+$python manage.py createsuperuser
+
+$python manage.py migrate
+$python manage.py makemigrations polls
+$python manage.py runserver
+$python manage.py runserver 0.0.0.0:8000
+$python manage.py startapp polls
+$python manage.py sqlmigrate polls 0001
+
+
+$python manage.py shell
+>>>from polls.models import Question, Choice
+>>>Question.objects.all()¨
+>>>from django.utils import timezone
+>>>q = Question(question_text="What's new?", pub_date=timezone.now())
+
+Default Server http://127.0.0.1:8000/
