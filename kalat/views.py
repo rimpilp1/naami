@@ -1,10 +1,46 @@
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .forms import SaalisForm
+from .forms import LoginForm
 from .models import kalat
-from django import forms
+from django import forms 
 
+def httpResponse(request):
+    
+    user = User.objects.create(username='testuser',password='!')
+    user.set_password('pass')
+    user.save()
+    
+
+    return HttpResponse("testuser created with password pass")
+
+def login(request):
+    if request.method == 'POST':
+        
+        form = LoginForm(request.POST)
+        if form.is_valid():
+
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            
+            user = authenticate(username=username,password=password)
+            
+            
+            if user is not None:
+                if user.is_active:
+                    auth_login(request,user)
+                    return HttpResponse("You've been logged in")
+        return HttpResponse("Failed to login")
+                     
+        
+    else:
+        form = LoginForm()
+        return render(request, 'loginform.html', {'form': form})
+        
 
 def test(request):
     latest_question_list = kalat.objects.order_by('id')[:2]
@@ -19,7 +55,7 @@ def index(request):
     if request.method == 'POST':
         form = SaalisForm(request.POST, request.FILES or None)
         if form.is_valid():
-            instance = form.save(commit = False)
+            instance = form.save(commit = False) 
             instance.save()
         """
 		# create a form instance and populate it with data from the request:

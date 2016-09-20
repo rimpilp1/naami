@@ -20,4 +20,9 @@ class kalat(models.Model):
     #phonenumber
     def __str__(self): 
         return "Saaja: " + self.saaja+ " Paikka: " + self.paikka + " Viehe: " + self.viehe + " Paino:" + self.paino + " Pituus: " + self.pituus + " Paiva: "
+        
+    class Meta:
+        permissions = (
+        ("publih","Allows publishing of kalats objects"),
+        )
 # Create your models here.
